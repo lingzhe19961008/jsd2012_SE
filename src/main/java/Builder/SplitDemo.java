@@ -9,7 +9,7 @@ public class SplitDemo {
         String str="asd123asd123asd123asd123";
         //拆分数字部分拆分
         String[] arr=str.split("[0-9]+");//"[0-9]+"正则表达式0-9
-        System.out.println(arr.length);//拆分后arr的长度
+        //System.out.println(arr.length);//拆分后arr的长度
         for(int i=0;i<arr.length;i++){
             System.out.println(arr[i]);
 

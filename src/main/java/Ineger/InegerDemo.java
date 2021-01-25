@@ -21,7 +21,7 @@ public class InegerDemo {
         Integer i1=Integer.valueOf(d);
         Integer i2=Integer.valueOf(d);
         System.out.println(i1==i2);
-        //包装类都从写过equals方法。
+        //包装类都重写过equals方法。
         System.out.println(i1.equals(i2));
 
         //包装类转换为基本类型
