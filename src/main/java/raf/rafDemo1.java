@@ -38,12 +38,12 @@ public class rafDemo1 {
          *                            vvvvvvvv
          * 00000000 00000000 00000000 00000000
          */
-        raf.write(1);
-        raf.write(2);
+        raf.write(256);//如果超过255则变成从1开始//因为只读后8位
+        raf.write(2);//00000000 00000000 00000000 00000010
         System.out.println("写出完毕");
         /*
-        raf.dat文件数据内容{：
-        00000001  00000010
+        raf.dat文件数据内容：
+        00000001 00000010
          */
         raf.close();//最终要调用close方法
 
