@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.Point;
 
 
-public class Test {
+public class PointTest {
     public static void main(String[] args) {
         Point p = new Point(1,2);
         /*

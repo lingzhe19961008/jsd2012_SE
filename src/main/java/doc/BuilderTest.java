@@ -1,6 +1,6 @@
 package doc;
 
-public class Test {
+public class BuilderTest {
     public static void main(String[] args) {
        String  s1=getHostName("www.tedu.cm");
        String  s2=getHostName("http://www.tarena.com");
