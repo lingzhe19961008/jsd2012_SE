@@ -1,4 +1,4 @@
-package io;
+package io.day05;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -17,13 +17,14 @@ public class CopyDemo {
         4：关闭两个流
          */
         FileInputStream fis=new FileInputStream("user.dat");
-        FileOutputStream fis_cp=new FileOutputStream("user_cp.dat");
+        FileOutputStream fos_cp=new FileOutputStream("user_cp.dat");
         int len;
         byte [] data= new byte[1024*10];
         while ((len=fis.read(data))!=-1){
-         fis_cp.write(data,0,len);
+         fos_cp.write(data,0,len);
         }
+        System.out.println("复制完成" );
         fis.close();
-        fis_cp.close();
+        fos_cp.close();
     }
 }
