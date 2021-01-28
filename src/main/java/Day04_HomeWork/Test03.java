@@ -10,26 +10,29 @@ public class Test03 {
     public static void main(String[] args) throws IOException {
         Scanner scan=new Scanner(System.in);
         System.out.println("username:");
-        String use=scan.nextLine();
+        String username=scan.nextLine();
         System.out.println("password");
-        String pass=scan.nextLine();
+        String password=scan.nextLine();
 
         RandomAccessFile raf= new RandomAccessFile("user.dat", "r");
+        boolean ligin=false;//表示登陆是否成功
         for(int i=0;i<raf.length()/100;i++){
+            raf.seek(i*100);
           byte[] data=new byte[32];
-          raf.read(data);//username
-          String username=new String(data,"utf-8");
-
-          raf.read(data);//password
-          String password=new String(data,"utf-8");
-            raf.read(data);//nickname
-            raf.readInt();//age
-            if(username.equals(use)&& password.equals(pass)){
-                System.out.println("用户名密码正确");
-                break;
-            }else{
-                System.out.println("用户名密码错误");
-            }
+          raf.read(data);
+          String name=new String(data,"utf-8").trim();
+          if(name.equals(username)){
+              raf.read(data);
+              String psw=new String(data,"utf-8").trim();
+              if(psw.equals(password)){
+                  ligin=true;
+              }
+          }
+        }
+        if(ligin){
+            System.out.println("登陆成功");
+        }else{
+            System.out.println("登陆失败");
         }
         raf.close();
 

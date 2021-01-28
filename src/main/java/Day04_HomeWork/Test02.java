@@ -13,30 +13,33 @@ public class Test02 {
     public static void main(String[] args) throws IOException {
         Scanner scan=new Scanner(System.in);
         System.out.println("请输入用户名");
-        String newusername=scan.nextLine();
+        String username=scan.nextLine();
         System.out.println("请输入昵名");
-        String newnickname=scan.nextLine();
+        String nickname=scan.nextLine();
 
         RandomAccessFile raf=new RandomAccessFile("user.dat", "rw");
 
+        boolean update=false;;//记录是否有昵名被修改过
         for (int i=0;i<raf.length()/100;i++){
-           byte[] date=new byte[32];
+
+           raf.seek(i*100);
+            byte[] date=new byte[32];
            raf.read(date);
-           String username=new String(date,"utf-8");
-           if(username.contains(newusername)){
-              raf.seek(32);
-              
+           String name=new String(date,"utf-8").trim();
+           if(name.contains(username)){
+              raf.seek(i*100+64);
+              date=nickname.getBytes("utf-8");
+              date=Arrays.copyOf(date, 32);
+              raf.write(date);
+              update=true;
+              break;
            }
 
-            date=new byte[32];
-            raf.read(date);
-
-            date=new byte[32];
-            raf.read(date);
-
-           int age= raf.readInt();
-            System.out.println(username);
-
+        }
+        if(update){
+            System.out.println("修改完毕");
+        }else{
+            System.out.println("查无此人");
         }
         raf.close();
     }
