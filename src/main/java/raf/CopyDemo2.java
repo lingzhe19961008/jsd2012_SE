@@ -44,14 +44,19 @@ public class CopyDemo2 {
     public static void main(String[] args) throws IOException {
         RandomAccessFile xh1=new RandomAccessFile("xh.exe", "r");
         RandomAccessFile xh2=new RandomAccessFile("xh_cp.exe", "rw");
-        int len;                               //记录每次块读数据后，实际读取到的字节数
+        /*int len;                               //记录每次块读数据后，实际读取到的字节数
         byte[] data=new byte[1024*10];//10kb
-        long start =System.currentTimeMillis();
+                                            //long start =System.currentTimeMillis();
         while ((len=xh1.read(data))!=-1){ //读取10kb
             xh2.write(data,0,len);//读了多少就写多少写10kb
+        }*/
+                                            //long end =System.currentTimeMillis();
+                                            //System.out.println("复制完毕！耗时"+(end-start)+"ms");
+        int len;
+        byte[] data=new byte[1024*10];
+        while ((len=xh1.read(data))!=-1){
+            xh2.write(data, 0, len);
         }
-        long end =System.currentTimeMillis();
-        System.out.println("复制完毕！耗时"+(end-start)+"ms");
         xh1.close();
         xh2.close();
     }
